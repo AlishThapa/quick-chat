@@ -1,16 +1,37 @@
-# quickchat
+<h1 align="center" id="title">Quick Chat</h1>
 
-A new Flutter project.
 
-## Getting Started
+<p id="description">An app to chitchat with your friend.</p> 
 
-This project is a starting point for a Flutter application.
+<h2>Project Screenshots:</h2>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![Screenshot_20240501-162002](https://github.com/AlishThapa/bg-remover/assets/104584175/a3cbc418-0217-408a-b958-27e5b65b9b91)
+![Screenshot_20240501-162010](https://github.com/AlishThapa/bg-remover/assets/104584175/4f9b49fa-4f3c-46a0-9495-7a8cd1e1a7e5)
+![Screenshot_20240501-162019](https://github.com/AlishThapa/bg-remover/assets/104584175/fe5bf020-06f2-4b8c-aaaf-49c5ee9bc264)
+![Screenshot_20240501-162028](https://github.com/AlishThapa/bg-remover/assets/104584175/320ddc65-f23c-4d0e-90ff-b2a815fecf76)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. step 1: (add the project)</p>
+
+```
+https://github.com/AlishThapa/bg-remover.git
+```
+
+<p>2. step 2: (Add packages)</p>
+
+```
+flutter pub get
+```
+
+<p>3. step 3: (run the project) You can run it clicking f5 or ctrl + f5 in vscode or run button from android studio</p>
+
+```
+flutter run
+```
+
+<h2>💖Like my work?</h2>
+
+connect with me at alishthapa.4450@gmail.com
