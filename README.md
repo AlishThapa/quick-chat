@@ -6,10 +6,12 @@
 <h2>Project Screenshots:</h2>
 
 
-![Screenshot_20240501-162002](https://github.com/AlishThapa/bg-remover/assets/104584175/a3cbc418-0217-408a-b958-27e5b65b9b91)
-![Screenshot_20240501-162010](https://github.com/AlishThapa/bg-remover/assets/104584175/4f9b49fa-4f3c-46a0-9495-7a8cd1e1a7e5)
-![Screenshot_20240501-162019](https://github.com/AlishThapa/bg-remover/assets/104584175/fe5bf020-06f2-4b8c-aaaf-49c5ee9bc264)
-![Screenshot_20240501-162028](https://github.com/AlishThapa/bg-remover/assets/104584175/320ddc65-f23c-4d0e-90ff-b2a815fecf76)
+![1](https://github.com/AlishThapa/quick-chat/assets/104584175/637c44d3-c76d-4047-885d-4acb14148311)
+![2](https://github.com/AlishThapa/quick-chat/assets/104584175/8532194c-3dee-49ab-8025-7dc8786791f2)
+![3](https://github.com/AlishThapa/quick-chat/assets/104584175/195e602d-0a50-47b9-b82d-762a2f444314)
+![4](https://github.com/AlishThapa/quick-chat/assets/104584175/8918ada0-7565-4acf-ba73-31b25095364a)
+![5](https://github.com/AlishThapa/quick-chat/assets/104584175/dab321f3-474a-4eb7-8c1a-73269b43655a)
+![6](https://github.com/AlishThapa/quick-chat/assets/104584175/2c937982-5baf-433d-84eb-0b215264fb14)
 
 
 <h2>🛠️ Installation Steps:</h2>
@@ -17,7 +19,7 @@
 <p>1. step 1: (add the project)</p>
 
 ```
-https://github.com/AlishThapa/bg-remover.git
+https://github.com/AlishThapa/quick-chat.git
 ```
 
 <p>2. step 2: (Add packages)</p>
