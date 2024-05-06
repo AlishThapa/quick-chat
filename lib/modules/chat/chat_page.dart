@@ -6,10 +6,11 @@ import 'package:quickchat/modules/chat/widget/chats.dart';
 import '../../utils.dart';
 
 class ChatPage extends StatefulWidget {
-  final String receiverEmail;
+  final String receiverName;
   final String receiverId;
 
-  const ChatPage({super.key, required this.receiverEmail, required this.receiverId});
+
+  const ChatPage({super.key, required this.receiverName, required this.receiverId});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -19,7 +20,6 @@ class _ChatPageState extends State<ChatPage> {
   final TextEditingController _messageController = TextEditingController();
   final ChatService _chatService = ChatService();
   final AuthService _authService = AuthService();
-  String _visibleTimeStamp = '';
 
   void _sendMessage() async {
     String message = _messageController.text;
@@ -34,7 +34,7 @@ class _ChatPageState extends State<ChatPage> {
     final senderId = _authService.getCurrentUser()!.uid;
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.receiverEmail),
+        title: Text(widget.receiverName),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),

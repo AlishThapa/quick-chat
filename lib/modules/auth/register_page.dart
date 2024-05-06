@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:quickchat/modules/auth/login.dart';
 import 'package:quickchat/modules/auth/utils/auth_gate.dart';
 import 'package:quickchat/modules/auth/utils/auth_service.dart';
@@ -26,6 +29,20 @@ class _RegisterPageState extends State<RegisterPage> {
 
   bool isLoading = false;
 
+  File? _imageFile; // Add this variable to store the selected image file
+
+// Add a method to pick an image from gallery
+  Future<void> _pickImage() async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _imageFile = File(pickedImage.path);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +63,21 @@ class _RegisterPageState extends State<RegisterPage> {
                       color: Theme.of(context).colorScheme.inversePrimary,
                       fontSize: 18,
                     ),
+              ),
+              const SizedBox(height: 10),
+              GestureDetector(
+                onTap: _pickImage,
+                child: Container(
+                  width: 100,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: _imageFile != null
+                      ? Image.file(_imageFile!, fit: BoxFit.cover)
+                      : Icon(Icons.camera_alt, size: 40, color: Colors.grey[600]),
+                ),
               ),
               const SizedBox(height: 10),
               LoginTextField(
@@ -117,6 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               name: _nameController.text.trim(),
                               phone: _phoneController.text.trim(),
                               address: _addressController.text.trim(),
+                              imageFile: _imageFile,
                             );
                             Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const AuthGate()));
                           } catch (e) {

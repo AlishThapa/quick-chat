@@ -56,11 +56,11 @@ class _ChatsState extends State<Chats> {
                 color: widget.isCurrentUser ? Colors.blue[400] : Colors.grey[200],
                 borderRadius: widget.isCurrentUser
                     ? BorderRadius.only(
-                        topLeft: Radius.circular(widget.borderRad), topRight: Radius.circular(widget.borderRad), bottomLeft: Radius.circular(widget.borderRad))
+                    topLeft: Radius.circular(widget.borderRad), topRight: Radius.circular(widget.borderRad), bottomLeft: Radius.circular(widget.borderRad))
                     : BorderRadius.only(
-                        topLeft: Radius.circular(widget.borderRad),
-                        topRight: Radius.circular(widget.borderRad),
-                        bottomRight: Radius.circular(widget.borderRad)),
+                    topLeft: Radius.circular(widget.borderRad),
+                    topRight: Radius.circular(widget.borderRad),
+                    bottomRight: Radius.circular(widget.borderRad)),
               ),
               child: Column(
                 crossAxisAlignment: widget.isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,

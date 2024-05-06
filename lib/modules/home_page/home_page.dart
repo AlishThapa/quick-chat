@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
         }
 
         String? currentUserEmail = authService.getCurrentUser()?.email;
+
         var filteredUsers = snapshot.data!.where((userData) => userData['email'] != currentUserEmail).toList();
 
         return ListView.builder(
@@ -39,18 +40,24 @@ class HomePage extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 5),
               child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.grey.shade600,
-                  child: Text(initial),
-                ),
+                leading: userData['imageUrl'] == null
+                    ? CircleAvatar(
+                        backgroundColor: Colors.grey.shade600,
+                        child: Text(initial),
+                      )
+                    : CircleAvatar(
+                        backgroundColor: Colors.grey.shade600,
+                        backgroundImage: NetworkImage(userData['imageUrl']),
+                      ),
                 title: Text(displayName, style: TextStyle(color: Theme.of(context).colorScheme.onSurface)),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ChatPage(
-                        receiverEmail: userData['name'],
+                        receiverName: userData['name'],
                         receiverId: userData['uid'],
+
                       ),
                     ),
                   );
