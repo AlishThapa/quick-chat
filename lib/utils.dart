@@ -13,3 +13,7 @@ String formatChatTimestamp(DateTime timestamp) {
     return DateFormat('yyyy-MM-dd HH:mm').format(timestamp);
   }
 }
+
+
+const appId = 1841062972;
+const appSign = 'f1492941d96e74157c5fcc8344e98d6ea8d0f021e67cb2a0edd63cd235209a65';

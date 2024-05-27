@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:quickchat/modules/auth/utils/auth_service.dart';
 
 class Chats extends StatefulWidget {
   const Chats({
@@ -10,6 +11,8 @@ class Chats extends StatefulWidget {
     required this.data,
     required this.message,
     required this.formattedTime,
+    required this.receiverInitial,
+    required this.receiverImage,
   });
 
   final Alignment alignUser;
@@ -18,6 +21,8 @@ class Chats extends StatefulWidget {
   final Map<String, dynamic> data;
   final QueryDocumentSnapshot<Object?> message;
   final String formattedTime;
+  final String receiverInitial;
+  final String receiverImage;
 
   @override
   State<Chats> createState() => _ChatsState();
@@ -26,8 +31,13 @@ class Chats extends StatefulWidget {
 class _ChatsState extends State<Chats> {
   String _visibleTimeStamp = '';
 
+  final AuthService _authService = AuthService();
+
   @override
   Widget build(BuildContext context) {
+    final senderName = _authService.getCurrentUser()!.displayName;
+    final senderImage = _authService.getCurrentUser()!.photoURL;
+
     return GestureDetector(
       onTap: () {
         setState(() {
@@ -41,26 +51,33 @@ class _ChatsState extends State<Chats> {
           children: [
             //if current user then show the initial letter at the front of the message
             if (!widget.isCurrentUser) ...[
-              CircleAvatar(
-                backgroundColor: Colors.grey,
-                child: Text(
-                  widget.data['message'][0],
-                  style: TextStyle(color: widget.isCurrentUser ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-              ),
+              widget.receiverImage.isNotEmpty
+                  ? CircleAvatar(
+                      radius: 16,
+                      backgroundImage: NetworkImage(widget.receiverImage),
+                    )
+                  : CircleAvatar(
+                      radius: 16,
+                      backgroundColor: Colors.grey,
+                      child: Text(
+                        widget.receiverInitial,
+                        style: TextStyle(color: widget.isCurrentUser ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: 15),
+                      ),
+                    ),
             ],
             Container(
+              constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.45),
               padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
                 color: widget.isCurrentUser ? Colors.blue[400] : Colors.grey[200],
                 borderRadius: widget.isCurrentUser
                     ? BorderRadius.only(
-                    topLeft: Radius.circular(widget.borderRad), topRight: Radius.circular(widget.borderRad), bottomLeft: Radius.circular(widget.borderRad))
+                        topLeft: Radius.circular(widget.borderRad), topRight: Radius.circular(widget.borderRad), bottomLeft: Radius.circular(widget.borderRad))
                     : BorderRadius.only(
-                    topLeft: Radius.circular(widget.borderRad),
-                    topRight: Radius.circular(widget.borderRad),
-                    bottomRight: Radius.circular(widget.borderRad)),
+                        topLeft: Radius.circular(widget.borderRad),
+                        topRight: Radius.circular(widget.borderRad),
+                        bottomRight: Radius.circular(widget.borderRad)),
               ),
               child: Column(
                 crossAxisAlignment: widget.isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -78,14 +95,16 @@ class _ChatsState extends State<Chats> {
               ),
             ),
             if (widget.isCurrentUser) ...[
-              CircleAvatar(
-                backgroundColor: Colors.grey,
-                radius: 10,
-                child: Text(
-                  widget.data['message'][0],
-                  style: TextStyle(color: widget.isCurrentUser ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: 10),
-                ),
-              ),
+              senderImage!.isNotEmpty
+                  ? CircleAvatar(radius: 16, backgroundImage: NetworkImage(senderImage))
+                  : CircleAvatar(
+                      backgroundColor: Colors.grey,
+                      radius: 16,
+                      child: Text(
+                        senderName!,
+                        style: TextStyle(color: widget.isCurrentUser ? Colors.white : Colors.black, fontWeight: FontWeight.bold, fontSize: 10),
+                      ),
+                    ),
             ],
           ],
         ),

@@ -33,7 +33,6 @@ class AuthService {
   }) async {
     UserCredential user = await _auth.createUserWithEmailAndPassword(email: email, password: password);
 
-
     if (imageFile != null) {
       String imageUrl = await _uploadImageToFirebaseStorage(imageFile, user.user!.uid);
       await _firestore.collection("users").doc(user.user!.uid).set({
@@ -45,6 +44,8 @@ class AuthService {
         'address': address,
         'imageUrl': imageUrl,
       });
+      await user.user!.updateDisplayName(name);
+      await user.user!.updatePhotoURL(imageUrl);
     } else {
       await _firestore.collection("users").doc(user.user!.uid).set({
         'uid': user.user!.uid,
@@ -65,6 +66,12 @@ class AuthService {
     await storageReference.putFile(imageFile);
     final imageUrl = await storageReference.getDownloadURL();
     return imageUrl;
+  }
+
+
+  // Send password reset email
+  Future<void> sendPasswordResetEmail(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
   }
 
   //sign out

@@ -44,6 +44,7 @@ dependencies:
   intl: ^0.19.0
   image_picker: ^1.1.1
   firebase_storage: ^11.7.4
+  zego_uikit_prebuilt_call: ^4.11.0
 
 dev_dependencies:
   flutter_test:

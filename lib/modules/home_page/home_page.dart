@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                       builder: (context) => ChatPage(
                         receiverName: userData['name'],
                         receiverId: userData['uid'],
-
+                        receiverImage: userData['imageUrl'] ?? "",
                       ),
                     ),
                   );

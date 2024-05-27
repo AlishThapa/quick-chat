@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:quickchat/modules/auth/forgot_password/forgot_password_page.dart';
 import 'package:quickchat/modules/auth/register_page.dart';
 import 'package:quickchat/modules/auth/utils/auth_service.dart';
 import 'package:quickchat/modules/auth/widgets/custom_text_field.dart';
@@ -69,7 +70,26 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder: (context, animation, secondaryAnimation) => const ForgotPasswordPage(),
+                          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                            const begin = Offset(1.0, 0.0);
+                            const end = Offset.zero;
+                            const curve = Curves.ease;
+                            var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+                            var offsetAnimation = animation.drive(tween);
+                            return SlideTransition(
+                              position: offsetAnimation,
+                              child: child,
+                            );
+                          },
+                          transitionDuration: const Duration(milliseconds: 300),
+                        ),
+                      );
+                    },
                     child: Text(
                       'Forgot password?',
                       style: TextStyle(
@@ -88,20 +108,17 @@ class _LoginPageState extends State<LoginPage> {
                     isLoading = true;
                   });
                   try {
-
                     await AuthService().signInWithEmailAndPassword(
                       email: _emailController.text.trim(),
                       password: _passwordController.text.trim(),
                     );
                   } catch (e) {
-
+                    print(e.toString());
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Failed to login: ${e.toString()}")),
+                      const SnackBar(content: Text("Failed to login:Email id or password is incorrect")),
                     );
                   } finally {
-
                     if (mounted) {
-
                       setState(() {
                         isLoading = false;
                       });
